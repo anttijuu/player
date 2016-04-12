@@ -1,0 +1,349 @@
+/*Copyright   Feb 21, 2005 Antti Juustila ----------------------
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+http://www.gnu.org/copyleft/gpl.html
+---------------------------------------------------------------*/
+
+NAME PLAY
+
+#include <eikon.rh>
+#include <eikon.rsg>
+#include <avkon.rh>
+#include <avkon.rsg>
+
+#include "Player.hrh"
+
+#include "PlayerDefines.h"
+
+// ---------------------------------------------------------
+//   
+//    Define the resource file signature 
+//    This resource should be empty.
+//
+// ---------------------------------------------------------
+//
+RESOURCE RSS_SIGNATURE { }
+
+// ---------------------------------------------------------
+//   
+//    Default Document Name
+//
+// ---------------------------------------------------------
+//
+RESOURCE TBUF
+	{
+	buf="MoboPlayerLists";
+	}
+
+// ---------------------------------------------------------
+//   
+//    Define default menu and CBA key.
+//
+// ---------------------------------------------------------
+//
+RESOURCE EIK_APP_INFO
+    {
+	// no implementation required
+    }
+
+// ---------------------------------------------------------
+//   
+//    r_player_view1
+//    Define view 1
+//
+// ---------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_player_view_playlists
+    {
+    menubar = r_player_menubar_playlists;
+    cba = R_AVKON_SOFTKEYS_OPTIONS_EXIT;
+    }
+
+// ---------------------------------------------------------
+//   
+//   r_player_menubar1
+//   Menu title definition
+//
+// ---------------------------------------------------------
+RESOURCE MENU_BAR r_player_menubar_playlists
+    {
+    titles =
+        {
+        MENU_TITLE {menu_pane = r_player_menu_playlists;}
+        };
+    }
+
+// ---------------------------------------------------------
+//   
+//   r_player_menu1
+//   Menu for "Options"
+//
+// ---------------------------------------------------------
+//
+RESOURCE MENU_PANE r_player_menu_playlists
+    {
+    items = 
+        {
+        MENU_ITEM {command = EPlayerNewPlayList;  txt = "New list";},
+        MENU_ITEM {command = EPlayerEditPlayList;  txt = "Edit list";},
+        MENU_ITEM {command = EPlayerDeletePlayList;  txt = "Delete list";},
+        MENU_ITEM {command = EAknSoftkeyExit;   txt = "Exit";}
+        };
+    }
+
+// ---------------------------------------------------------
+//   
+//    r_player_view2
+//    Define view 2
+//
+// ---------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_player_view_recordings
+    {
+	menubar = r_player_menubar_recordings;
+    cba = R_AVKON_SOFTKEYS_OPTIONS_BACK;
+    }
+
+// ---------------------------------------------------------
+//   
+//   r_player_menubar2
+//   Menu title definition
+//
+// ---------------------------------------------------------
+RESOURCE MENU_BAR r_player_menubar_recordings
+    {
+    titles =
+        {
+        MENU_TITLE {menu_pane = r_player_menu_recordings;}
+        };
+    }
+
+// ---------------------------------------------------------
+//   
+//   r_player_menu2
+//   Menu for "Options"
+//
+// ---------------------------------------------------------
+//
+RESOURCE MENU_PANE r_player_menu_recordings
+    {
+    items = 
+        {
+        MENU_ITEM {command = EPlayerPlayAll;  txt = "Play all";},
+        MENU_ITEM {command = EPlayerNewRecording;  txt = "New recording";},
+        MENU_ITEM {command = EPlayerEditRecording;  txt = "Edit recording";},
+        MENU_ITEM {command = EPlayerDeleteRecording;  txt = "Delete recording";},
+        MENU_ITEM {cascade = r_player_menu_recordings_sort;  txt = "Sort";}
+        };
+    }
+
+RESOURCE MENU_PANE r_player_menu_recordings_sort
+    {
+    items = 
+        {
+        MENU_ITEM {command = EPlayerSortByName;  txt = "Name";},
+        MENU_ITEM {command = EPlayerSortByPerformer;  txt = "Artist";},
+        MENU_ITEM {command = EPlayerSortByGenre;  txt = "Genre";},
+        MENU_ITEM {command = EPlayerSortByPerformed;  txt = "Date";}
+        };
+    }
+
+
+RESOURCE DIALOG r_playlist_dialog
+	{
+	flags = EEikDialogFlagNoDrag | EEikDialogFlagFillAppClientRect 
+			|EEikDialogFlagNoTitleBar | EEikDialogFlagNoBorder |  
+			EEikDialogFlagCbaButtons | EEikDialogFlagWait;
+	buttons = R_AVKON_SOFTKEYS_OK_CANCEL;
+	form = r_playlist_dialog_form;
+	}
+
+RESOURCE FORM r_playlist_dialog_form
+	{
+	flags = EEikFormEditModeOnly;
+	items =
+		{
+		DLG_LINE
+			{
+			type = EEikCtEdwin;
+			id = EPlayListNameControl;
+//			itemflags = EEikDlgItemTakesEnterKey | EEikDlgItemOfferAllHotKeys;
+			prompt = "Name";
+			control = EDWIN
+				{
+				flags = EEikEdwinNoHorizScrolling | EEikEdwinResizable;
+				width = 20;
+				lines = 1;
+				maxlength = KMaxPlayListNameLen;
+				};
+			},
+		DLG_LINE
+			{
+			type = EEikCtEdwin;
+			id = EPlayListDescriptionControl;
+//			itemflags = EEikDlgItemTakesEnterKey | EEikDlgItemOfferAllHotKeys;
+			prompt = "Info";
+			control = EDWIN
+				{
+				flags = EEikEdwinNoHorizScrolling | EEikEdwinResizable;
+				width = 20;
+				lines = 1;
+				maxlength = KMaxPlayListDescriptionLen;
+				};
+			}
+		};
+	}
+
+RESOURCE DIALOG r_recording_dialog
+	{
+	flags = EEikDialogFlagNoDrag | EEikDialogFlagFillAppClientRect 
+			|EEikDialogFlagNoTitleBar | EEikDialogFlagNoBorder |  
+			EEikDialogFlagCbaButtons | EEikDialogFlagWait;
+	buttons = R_AVKON_SOFTKEYS_OK_CANCEL;
+	form = r_recording_dialog_form;
+	}
+
+	
+RESOURCE FORM r_recording_dialog_form
+	{
+	flags = EEikFormEditModeOnly;
+	items =
+		{
+		DLG_LINE
+			{
+			type = EEikCtEdwin;
+			id = ERecordingNameControl;
+//			itemflags = EEikDlgItemTakesEnterKey | EEikDlgItemOfferAllHotKeys;
+			prompt = "Name";
+			control = EDWIN
+				{
+				flags = EEikEdwinNoHorizScrolling | EEikEdwinResizable;
+				width = 20;
+				lines = 1;
+				maxlength = KMaxRecordingNameLen;
+				};
+			},
+		DLG_LINE
+			{
+			type = EEikCtEdwin;
+			id = ERecordingPerformerControl;
+//			itemflags = EEikDlgItemTakesEnterKey | EEikDlgItemOfferAllHotKeys;
+			prompt = "Artist";
+			control = EDWIN
+				{
+				flags = EEikEdwinNoHorizScrolling | EEikEdwinResizable;
+				width = 20;
+				lines = 1;
+				maxlength = KMaxPerformerNameLen;
+				};
+			},
+
+		DLG_LINE
+			{
+			type = EEikCtDurationEditor;
+			prompt = "Dur.";
+			id = ERecordingDurationControl;
+//			itemflags = EEikDlgItemTakesEnterKey | EEikDlgItemOfferAllHotKeys;
+			control = DURATION_EDITOR
+				{
+				flags = EEikTimeForce24HourFormat;
+				minDuration = DURATION
+					{
+					seconds = 0;
+					};
+				maxDuration = DURATION
+					{
+					seconds = 72000;
+					};
+				};
+			},
+
+		DLG_LINE
+			{
+			type = EEikCtEdwin;
+			id = ERecordingGenreControl;
+//			itemflags = EEikDlgItemTakesEnterKey | EEikDlgItemOfferAllHotKeys;
+			prompt = "Genre";
+			control = EDWIN
+				{
+				flags = EEikEdwinNoHorizScrolling | EEikEdwinResizable;
+				width = 20;
+				lines = 1;
+				maxlength = KMaxGenreNameLen;
+				};
+			},
+
+		DLG_LINE
+			{
+			type = EEikCtDateEditor;
+			id = ERecordingPerformedControl;
+//			itemflags = EEikDlgItemTakesEnterKey | EEikDlgItemOfferAllHotKeys;
+			prompt = "Date";
+			control = DATE_EDITOR
+				{
+				minDate = DATE { year = 1000; };
+				maxDate = DATE { year = 2050; };
+				};
+			},
+
+		DLG_LINE
+			{
+			type = EEikCtEdwin;
+			id = ERecordingSoundFileControl;
+//			itemflags = EEikDlgItemTakesEnterKey | EEikDlgItemOfferAllHotKeys;
+			prompt = "File";
+			control = EDWIN
+				{
+				flags = EEikEdwinNoHorizScrolling | EEikEdwinResizable;
+				width = 20;
+				lines = 1;
+				maxlength = 256;
+				};
+			}
+		};
+	}
+
+
+RESOURCE TBUF r_cannot_run_animator
+	{
+	buf = "Cannot run animator\nError %d";
+	}
+
+RESOURCE TBUF r_playing_engine_error
+	{
+	buf = "Cannot play-Error: %d";
+	}
+	
+RESOURCE TBUF r_enter_name
+	{
+	buf = "Enter name";
+	}
+	
+RESOURCE TBUF r_enter_performer
+	{
+	buf = "Enter performer";
+	}
+	
+RESOURCE TBUF r_delete_confirmation
+	{
+	buf = "Delete item?";
+	}
+	
+	
+/**
+* Do not edit text here. These comments are maintained by CVS!
+*
+* $Log: MoboPlayer.rss,v $
+* Revision 1.1.1.1  2005/03/01 18:27:34  Antti
+* Importing first public release.
+*
+*
+*/

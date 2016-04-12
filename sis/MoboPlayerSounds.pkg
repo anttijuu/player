@@ -1,0 +1,36 @@
+;Copyright   Feb 21, 2005 Antti Juustila ----------------------
+;
+;This program is free software; you can redistribute it and/or
+;modify it under the terms of the GNU General Public License
+;as published by the Free Software Foundation; either version 2
+;of the License, or (at your option) any later version.
+;
+;This program is distributed in the hope that it will be useful,
+;but WITHOUT ANY WARRANTY; without even the implied warranty of
+;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;GNU General Public License for more details.
+;http://www.gnu.org/copyleft/gpl.html
+;---------------------------------------------------------------
+
+;Language - standard language definitions
+&EN
+
+; standard SIS header
+#{"MoboPlayer Sounds"},(0x01772299),0,5,0,TYPE=SISPATCH
+
+;Supports Series 60 v 0.9
+(0x101F6F88), 0, 0, 0, {"Series60ProductID"}
+
+; Dependency on MoboPlayer
+(0x01772299), 0, 6, 0, {"MoboPlayer"}
+
+(0x101F8202), 0, 0, 0, {"Series60ProductID"}
+; 0.9 is (0x101F6F88),
+;
+"C:\Symbian\8.0a\S60_2nd_FP2_CW\Epoc32\winscw\c\nokia\Sounds\Digital\2muchtime.wav"-"e:\Sounds\Digital\2muchtime.wav"
+"C:\Symbian\8.0a\S60_2nd_FP2_CW\Epoc32\winscw\c\nokia\Sounds\Digital\rocketcountdown.wav"-"e:\Sounds\Digital\rocketcountdown.wav"
+"C:\Symbian\8.0a\S60_2nd_FP2_CW\Epoc32\winscw\c\nokia\Sounds\Digital\whip 2.wav"-"e:\Sounds\Digital\whip 2.wav"
+"C:\Symbian\8.0a\S60_2nd_FP2_CW\Epoc32\winscw\c\nokia\Sounds\Digital\angels.wav"-"e:\Sounds\Digital\angels.wav"
+"C:\Symbian\8.0a\S60_2nd_FP2_CW\Epoc32\winscw\c\nokia\Sounds\Digital\YupiKayAye.wav"-"e:\Sounds\Digital\YupiKayAye.wav"
+"C:\Symbian\8.0a\S60_2nd_FP2_CW\Epoc32\winscw\c\nokia\Sounds\Digital\Human Motorcycle.wav"-"e:\Sounds\Digital\Human Motorcycle.wav"
+"C:\Symbian\8.0a\S60_2nd_FP2_CW\Epoc32\winscw\c\nokia\Sounds\Digital\Mission Impossible.wav"-"e:\Sounds\Digital\Mission Impossible.wav"

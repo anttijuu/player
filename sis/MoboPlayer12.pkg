@@ -1,0 +1,29 @@
+;Copyright   Feb 21, 2005 Antti Juustila ----------------------
+;
+;This program is free software; you can redistribute it and/or
+;modify it under the terms of the GNU General Public License
+;as published by the Free Software Foundation; either version 2
+;of the License, or (at your option) any later version.
+;
+;This program is distributed in the hope that it will be useful,
+;but WITHOUT ANY WARRANTY; without even the implied warranty of
+;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;GNU General Public License for more details.
+;http://www.gnu.org/copyleft/gpl.html
+;---------------------------------------------------------------
+
+;Language - standard language definitions
+&EN
+
+; standard SIS header
+#{"MoboPlayer"},(0x01772299),0,5,0
+
+;Supports Series 60 v 1.2
+(0x101F8202), 0, 0, 0, {"Series60ProductID"}
+
+"C:\Symbian\Series60_1_2_CW\Epoc32\release\winscw\udeb\z\system\apps\MoboPlayer\MoboPlayer.aif"-"!:\system\apps\MoboPlayer\MoboPlayer.aif"
+"C:\Symbian\Series60_1_2_CW\Epoc32\release\armi\urel\MoboPlayer.app"-"!:\system\apps\MoboPlayer\MoboPlayer.app"
+"C:\Symbian\Series60_1_2_CW\Epoc32\release\winscw\udeb\z\system\apps\MoboPlayer\MoboPlayer.rsc"-"!:\system\apps\MoboPlayer\MoboPlayer.rsc"
+"C:\Symbian\Series60_1_2_CW\Epoc32\release\winscw\udeb\z\system\apps\MoboPlayer\MoboPlayer_caption.rsc"-"!:\system\apps\MoboPlayer\MoboPlayer_caption.rsc"
+"C:\Symbian\Series60_1_2_CW\Epoc32\release\armi\urel\MoboPlayerEng.dll"-"!:\system\apps\MoboPlayer\MoboPlayerEng.dll"
+"C:\Symbian\Series60_1_2_CW\Epoc32\winscw\c\system\Apps\MoboPlayer\PlayerAnimations.mbm"-"!:\system\apps\MoboPlayer\PlayerAnimations.mbm"

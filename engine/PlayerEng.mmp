@@ -1,0 +1,48 @@
+/*Copyright   Feb 21, 2005 Antti Juustila ----------------------
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+http://www.gnu.org/copyleft/gpl.html
+---------------------------------------------------------------*/
+
+// PlayerEng.mmp
+//
+
+TARGET			MoboPlayerEng.dll
+TARGETTYPE		dll
+UID			0x1000008d 0x01826740
+SOURCEPATH		.
+
+SOURCE			PlayerEngDll.cpp
+SOURCE			Player.cpp
+SOURCE			PlayList.cpp
+SOURCE			Recording.cpp
+SOURCE			PlayerAnimator.cpp
+
+USERINCLUDE		..\inc
+SYSTEMINCLUDE		\epoc32\include
+LIBRARY			euser.lib
+LIBRARY			efsrv.lib
+LIBRARY			estor.lib
+LIBRARY			bafl.lib
+LIBRARY			MediaClientAudio.lib
+LIBRARY			fbscli.lib
+
+EXPORTUNFROZEN
+
+/**
+* Do not edit text here. These comments are maintained by CVS!
+*
+* $Log: PlayerEng.mmp,v $
+* Revision 1.1.1.1  2005/03/01 18:27:34  Antti
+* Importing first public release.
+*
+*
+*/

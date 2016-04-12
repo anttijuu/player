@@ -1,0 +1,68 @@
+/*Copyright   Feb 21, 2005 Antti Juustila ----------------------
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+http://www.gnu.org/copyleft/gpl.html
+---------------------------------------------------------------*/
+
+TARGET            MoboPlayer.app
+TARGETTYPE        app
+UID               0x100039CE 0x01772299
+TARGETPATH        \system\apps\MoboPlayer
+LANG              SC
+
+AIF              MoboPlayer.aif ..\aif MoboPlayerAif.rss c12 mb_list_icon.bmp mb_list_icon_mask.bmp mb_pane_icon.bmp mb_pane_icon_mask.bmp
+
+SOURCEPATH        .
+SOURCE		Player.cpp
+SOURCE		PlayerApplication.cpp 
+SOURCE		PlayerAppUi.cpp
+SOURCE		PlayerDocument.cpp 
+SOURCE		PlayerPlayListContainer.cpp
+SOURCE		PlayerPlayListView.cpp
+SOURCE		PlayerPlayListInfo.cpp
+SOURCE		PlayerRecordingInfo.cpp
+SOURCE		PlayerRecordingsContainer.cpp
+SOURCE		PlayerRecordingsView.cpp
+SOURCE		RecordingForm.cpp
+SOURCE		PlayListForm.cpp
+
+RESOURCE          MoboPlayer.rss
+RESOURCE          MoboPlayer_caption.rss
+
+USERINCLUDE       ..\inc 
+
+SYSTEMINCLUDE     \epoc32\include
+
+LIBRARY		euser.lib
+LIBRARY		apparc.lib
+LIBRARY		cone.lib
+LIBRARY		eikcore.lib
+LIBRARY		eikctl.lib
+LIBRARY		eikcoctl.lib
+LIBRARY		fbscli.lib
+LIBRARY		efsrv.lib
+LIBRARY		eikdlg.lib
+LIBRARY		estor.lib
+
+LIBRARY		MoboPlayerEng.lib
+
+// Series 60 specific:
+LIBRARY		avkon.lib
+
+/**
+* Do not edit text here. These comments are maintained by CVS!
+*
+* $Log: Player.mmp,v $
+* Revision 1.1.1.1  2005/03/01 18:27:34  Antti
+* Importing first public release.
+*
+*
+*/
